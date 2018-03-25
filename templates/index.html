@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block body %}
+    <div class="container">
+        <div class="row">
+            
+            {% for ds in datasets %}
+            	<div><p>{{ ds.name }} : <b>{{ ds.description }}</b></p></div>
+            {% endfor %}
+        
+        </div>
+    </div>
+    
+    <style type="text/css">
+        .badges {
+            margin-top: -5px;
+            margin-bottom: 20px;
+        }
+    </style>
+    
+    <script src="{{ url_for('static', filename='CSVExport.js') }}"></script>
+    <script>
+        function get_data(data){
+          data = JSON.parse(data);
+          //var data = [{Name: "Bob"}, {Name: "Frank"}, {Name: "Henry"}];
+          console.log(data);
+          var x = new CSVExport(data);
+          return false;
+        }
+    </script>
+    
+{% endblock %}
